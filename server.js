@@ -8,6 +8,11 @@ var PORT = process.env.PORT || 8080;
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
+
+// var bodyParser = require('body-parser')
+
+// app.use(bodyParser.urlencoded({extended: true}));
+// app.use(bodyParser.json());
 // ==============================================================================
 // EXPRESS CONFIGURATION
 // This sets up the basic properties for our express server
@@ -26,8 +31,14 @@ app.use(express.json());
 // These routes give our server a "map" of how to respond when users visit or request data from various URLs.
 // ================================================================================
 
-require('./app/routing/apiroutes.js')(app);
-require('./app/routing/htmlRoutes.js')(app);
+//require('./app/routing/apiroutes.js')(app);
+//require('./app/routing/htmlRoutes.js')(app);
+
+var apiRoutes = require('./app/routing/apiRoutes')
+app.use(apiRoutes)
+
+var htmlRoutes = require('./app/routing/htmlRoutes')
+app.use(htmlRoutes)
 
 // =============================================================================
 // LISTENER

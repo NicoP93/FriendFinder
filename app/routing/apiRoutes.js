@@ -4,22 +4,17 @@
 // Linking routes to the friend "data" source.
 // ===============================================================================
 const express = require("express");
-
-const app = express();
-const PORT = process.env.PORT || 3000;
-
-app.use(express.urlencoded({extended: true}));
-app.use(express.json());
+var router = express.Router();
 var friends = require("../data/friends.js");
 
 
 // ===============================================================================
 // ROUTING
 // ===============================================================================
-module.exports = function(app) {
+
   // API GET Request
   // ---------------------------------------------------------------------------
-  app.get("/api/friends", function(req, res) {
+  router.get("/api/friends", function(req, res) {
     res.json(friends);
   });
 
@@ -32,7 +27,7 @@ module.exports = function(app) {
   // Then the server saves the data to the tableData array)
   // ---------------------------------------------------------------------------
 
-  app.post("/api/friends", function(req, res) {
+  router.post("/api/friends", function(req, res) {
   // will handle the incoming survey results and compatibility logic
    var userInput = req.body;
       var userResponse = userInput.scores;
@@ -60,4 +55,6 @@ module.exports = function(app) {
       res.json(match);
 
     });
-  };
+
+
+    module.exports = router
