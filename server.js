@@ -33,7 +33,7 @@ app.use(express.json());
 
 //require('./app/routing/apiroutes.js')(app);
 //require('./app/routing/htmlRoutes.js')(app);
-
+//Switched from ^ to these below because it wouldn't deploy to heroku
 var apiRoutes = require('./app/routing/apiRoutes')
 app.use(apiRoutes)
 
